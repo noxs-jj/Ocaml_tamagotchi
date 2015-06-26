@@ -10,7 +10,7 @@
 (*                                                                           *)
 (*****************************************************************************)
 
-class Pet =
+class pet =
 	object (self)
 		val mutable _health = 100
 		val mutable _energy = 100
