@@ -56,7 +56,7 @@ $(NAME).opt: $(OPTOBJS)
 	$(CAMLOPT) $(FLAGS) -c $<
 
 clean:
-	rm -f *.cm[iox] *~ .*~ *.o
+	rm -f src/*.cm[iox] src/*~ src/.*~ src/*.o
 	rm -f $(NAME).o
 
 fclean: clean

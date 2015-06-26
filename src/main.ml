@@ -12,6 +12,15 @@
 
 let file = "save/save.itama"
 
-let main () =
+let main argc argv =
+	print_endline "test"
 
-let () = main ()
+let () =
+	let argv = Sys.argv in
+	let argc = Array.length argv in
+	begin try
+		main argc argv
+	with
+	| Failure err -> print_endline err
+	| _ -> failwith "Bad arg"
+	end
