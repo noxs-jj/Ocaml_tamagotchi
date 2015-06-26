@@ -12,7 +12,7 @@
 
 NAME = tamagotchi
 
-SOURCES = main.ml
+SOURCES = src/type.ml src/pet.ml src/game.ml src/main.ml
 
 CAMLC = ocamlc
 CAMLOPT = ocamlopt
