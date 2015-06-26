@@ -17,9 +17,14 @@ SOURCES = main.ml
 CAMLC = ocamlc
 CAMLOPT = ocamlopt
 CAMLDEP = ocamldep
-FLAGS = -w a
+FLAGS =
 LIBS = 
 WITHGRAPHICS = graphics.cma -cclib -LGraphics
+
+INSTALIB = 	brew install gtk+ \
+			brew install gtksourceview \
+			brew install libgnomecanvasmm libgnomecanvas \
+			brew install lablgtk
 
 all: depend $(NAME).byt
 

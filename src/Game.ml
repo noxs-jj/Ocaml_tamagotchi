@@ -9,9 +9,3 @@
 (*   Created: 2015/06/26 by vjacquie jmoiroux         ###   ########.fr      *)
 (*                                                                           *)
 (*****************************************************************************)
-
-let file = "save/save.itama"
-
-let main () =
-
-let () = main ()
