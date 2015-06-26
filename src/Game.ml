@@ -13,10 +13,13 @@
 class game =
 	object (self)
 		val _run = true
-		(* method init_game ac av pet =
-			if ac = 2 && av.(1) = "-n" then pet#init_all (Save#load_game); *)
-		method run_game (ac:int) (av:string array) =
+		method init_game (ac:int) (av:string list) (pet:Pet.pet) =
+			let save = new Save.save in
+			if ac = 2 && (List.nth av 1) = "-l" then pet#init_all (save#load_game)
+			else print_endline "init_game"
+
+		method run_game (ac:int) (av:string list) =
 			let pet = new Pet.pet in
-			print_endline "testtest"
-			(* self#init_game ac av pet *)
+			print_endline "run_game";
+			self#init_game ac av pet
 	end

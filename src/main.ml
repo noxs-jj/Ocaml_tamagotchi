@@ -10,18 +10,15 @@
 (*                                                                           *)
 (*****************************************************************************)
 
-let file = "save/save.itama"
-
 let main argc argv =
 	let game = new Game.game in
-	game#run_game argc argv;
-	print_endline "test"
+	game#run_game argc argv
 
 let () =
-	let argv = Sys.argv in
-	let argc = Array.length argv in
+	print_endline "before main";
+	let argv = Array.to_list Sys.argv in
 	begin try
-		main argc argv
+		main (List.length argv) argv
 	with
 	| Failure err -> print_endline err
 	| _ -> failwith "Bad arg"
