@@ -70,9 +70,6 @@ depend: .depend
 re: fclean all
 
 render_test:
-	ocamlfind ocamlc -g -package lablgtk2 -linkpkg \
-	src/render/render.ml \
-	src/render/main_test.ml \
-	-o test_render
+	ocamlfind ocamlc -g -package lablgtk2 -linkpkg src/render/main_test.ml -o test_render
 
 include .depend
