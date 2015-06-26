@@ -17,6 +17,12 @@ class pet =
 		val mutable _hygiene = 100
 		val mutable _happyness = 100
 
+		method init_all (d:Type.data) =
+			_health <- d.health;
+			_energy <- d.energy;
+			_hygiene <- d.hygiene;
+			_happyness <- d.happyness
+
 		method eat =
 			_health <- _health + 20;
 			_energy <- _energy - 10;

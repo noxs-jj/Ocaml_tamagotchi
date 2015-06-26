@@ -13,6 +13,8 @@
 let file = "save/save.itama"
 
 let main argc argv =
+	let game = new Game.game in
+	game#run_game argc argv;
 	print_endline "test"
 
 let () =
