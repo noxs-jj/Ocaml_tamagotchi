@@ -21,10 +21,10 @@ FLAGS =
 LIBS = 
 WITHGRAPHICS = graphics.cma -cclib -LGraphics
 
-INSTALIB = 	brew install gtk+ \
-			brew install gtksourceview \
-			brew install libgnomecanvasmm libgnomecanvas \
-			brew install lablgtk
+INSTALIB = 	opam switch 4.02.1 \
+			eval `opam config env` \
+			brew install gtk+ \
+			brew install lablgtk2
 
 all: depend $(NAME).byt
 
@@ -68,5 +68,8 @@ depend: .depend
 	$(CAMLDEP) $(SOURCES) > .depend
 
 re: fclean all
+
+render_test:
+	ocamlfind ocamlc -g -package lablgtk2 -linkpkg src/render/main_test.ml -o test_render
 
 include .depend
