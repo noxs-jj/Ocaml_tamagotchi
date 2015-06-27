@@ -45,8 +45,18 @@ class game =
 		| (x, y) when (self#check_pos x 450) = true && (self#check_pos y 250) = true -> false
 		| (_, _) -> true
 
+		method sleep pet render last_timer = 
+			if ((Unix.time ()) -. !last_timer) >= 1.0 then  begin
+				pet#decrHealth;
+				render#draw_screen pet;
+				last_timer := Unix.time ()
+			end
+			else print_string "";
+
 		method render_loop pet render =
+			let last_timer = ref (Unix.time ()) in
 			let rec loop pressed ite =
+				self#sleep pet render last_timer;
 				if (Graphics.button_down ()) = true then
 					begin
 						if pressed = false then begin
@@ -57,14 +67,14 @@ class game =
 							end
 							else print_endline "Exiting..." 
 						end
-						else loop true 0						
+						else begin loop true 0 end
 					end
 				else begin
 					if (ite + 1) = 10 then
 						loop false 0
-					else if pressed = false then loop false 0
-					else loop true (ite + 1)
-				end
+					else if pressed = false then begin loop false 0 end
+					else begin loop true (ite + 1) end
+				end;
 			in
 			loop false 0
 
