@@ -1,10 +1,13 @@
+(*
+ocamlfind ocamlc -g -package lablgtk2 -linkpkg main_test.ml -o test_render && ./test_render
+*)
+
 type data = {
 	mutable health : int;
 	mutable energy : int;
 	mutable hygiene : int ;
 	mutable happyness : int
 }
-
 
 let get_record = {health = 100; energy = 100; hygiene = 100; happyness = 100}
 
@@ -53,9 +56,40 @@ class pet =
 		method is_alive =
 			if _health = 0 || _energy = 0 || _hygiene = 0 || _happyness = 0 then false
 			else true
+
+		method pikachu =
+			" :::,\n" ^
+			" '::::'._\n" ^
+			"   '.    '.                        __.,,.\n" ^
+			"     '.    '.                _..-'''':::\"\n" ^
+			"       \\     \\,.--\"\"\"\"--.,-''      _:'\n" ^
+			"   /\\   \\  .               .    .-'\n" ^
+			  	"            '':---''_)      '-'-'\n" ^
+			"  /  \\   \\                   ':'\n" ^
+			" /    \\  :                     :\n" ^
+			"/      \\:                       :\n" ^
+			"\\       :                       :\n" ^
+			" \\      :      ,--,         ,-,  :\n" ^
+			"  \\    :      |(_):|       |():| :\n" ^
+			"   \\   :     __'--'   __    '-'_  :\n" ^
+			"    \\  :    /  \\      \\/      / \\ :\n" ^
+			"     \\  :  (    )             \\_/ :\n" ^
+			"  .-'' . :  \\__/   '--''--'      :\n" ^
+			"  \\  . .-:'.                   .:\n" ^
+			"   \' :| :  '-.__      ___...-' :\n" ^
+			"    \\::|:        ''''''          '.\n" ^
+			"  .,:::':  :                       '.\n" ^
+			"   \\::\\:   :                         '._\n" ^
+			"    \\::    :     /             '-._     '.\n" ^
+			"     \\:    :    /              .   :-._ :-'\n" ^
+			"      :    :   /               :   :  ''\n" ^
+			"      :   .'   )'.             :   :\n" ^
+			"       :  :  .'   '.          :   :\n" ^
+			"        : '..'      :      _.' _.:\n" ^
+			"         '._        :..---'\'''  _)\n" ^
+			"            '':---''_)      '-'-'\n" ^
+			"               '-'-'  PIKACHU!\n"
 	end
-
-
 
 class render =
 	object (self)
@@ -93,10 +127,12 @@ class render =
 										~position:`CENTER
 										~resizable:false () in
 
+
+
 			let mainContainer = GPack.vbox ~packing:window#add ~show:true () in
 			let head = GPack.vbox ~packing:mainContainer#add ~show:true () in
 			let headStatus = GPack.hbox ~height:110 ~packing:mainContainer#add ~show:true () in (* STATUS *)
-			let image = GMisc.drawing_area ~height:480 ~packing:mainContainer#add ~show:true () in (* PET IMAGE *)
+			let image = GPack.hbox ~height:480 ~packing:mainContainer#add ~show:true () in (* PET IMAGE *)
 			let footer = GPack.hbox ~height:110 ~packing:mainContainer#add ~show:true () in (* ACTION *)
 
 			ignore(window#connect#destroy ~callback:GMain.Main.quit);
@@ -112,14 +148,19 @@ class render =
 			(* END File menu *)
 
 
-			(* START image pix*)
+			(* START image pix https://mindsized.org/spip.php?article243 *)
 
 
 
 			(* END image pix*)
 
 			self#loadButtonsTop headStatus; (* STATUS *)
+
 			self#loadButtons footer; (* ACTION *)
+			let buttonPika = GButton.button ~label:tama#pikachu ~packing:image#add () in
+			ignore(buttonPika);
+
+
 			(* Display the windows and enter Gtk+ main loop *)
 			window#add_accel_group accel_group;
 			window#show ();
@@ -132,4 +173,3 @@ let main () =
 	render#init
 
 let () = main ()
-;;
