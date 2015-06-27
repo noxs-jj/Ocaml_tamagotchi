@@ -10,8 +10,8 @@
 (*                                                                           *)
 (*****************************************************************************)
 
-let main =
+let main () =
 	let game = new Game.game in
-	game#run_game
+	ignore (game#run_game)
 
 let () = main ()

@@ -19,12 +19,20 @@ class game =
 
 		method render_loop pet render =
 			let rec loop run =
-				if run = true then loop true
-				else print_endline "Exiting ..."
+				if (Graphics.button_down ()) = true then
+					begin
+						print_endline "mouse pressed";
+						let pos = Graphics.mouse_pos () in
+						print_endline (string_of_int (fst pos));
+						print_endline (string_of_int (snd pos))
+					end
+				else loop run				
+				(* if run = true then loop true *)
+				(* else print_endline "Exiting ..." *)
 			in
 			loop true
 
-		method run_game () =
+		method run_game =
 			let pet = new Pet.pet in
 			let render = new Render.render in
 			print_endline "run_game";
