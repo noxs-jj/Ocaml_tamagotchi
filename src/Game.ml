@@ -46,19 +46,27 @@ class game =
 		| (_, _) -> true
 
 		method render_loop pet render =
-			let rec loop run =
+			let rec loop pressed ite =
 				if (Graphics.button_down ()) = true then
 					begin
-						let pos = Graphics.mouse_pos () in
-						if (self#mouse pos pet render) = true then begin
-							render#draw_screen pet;
-							loop run
+						if pressed = false then begin
+							let pos = Graphics.mouse_pos () in
+							if (self#mouse pos pet render) = true then begin
+								render#draw_screen pet;
+								loop true 0
+							end
+							else print_endline "Exiting..." 
 						end
-						else print_endline "Exiting..." 
+						else loop true 0						
 					end
-				else loop run
+				else begin
+					if (ite + 1) = 10 then
+						loop false 0
+					else if pressed = false then loop false 0
+					else loop true (ite + 1)
+				end
 			in
-			loop true
+			loop false 0
 
 		method run_game =
 			let pet = new Pet.pet in
