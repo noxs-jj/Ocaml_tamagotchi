@@ -5,5 +5,4 @@ type data = {
 	mutable happyness : int
 }
 
-
-let get_record = {health = 100; energy = 100; hygiene = 100; happyness = 100}
+let (get_record:data) = {health = 100; energy = 100; hygiene = 100; happyness = 100}

@@ -18,6 +18,5 @@ let main () =
 		| Failure err -> print_endline err
 		| _ -> print_endline "Error"
 	end
-	
 
 let () = main ()

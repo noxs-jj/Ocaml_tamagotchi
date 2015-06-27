@@ -1,38 +1,16 @@
-#*****************************************************************************#
-#                                                                             #
-#   Vincent Jacquier                                     :::      ::::::::    #
-#   Jean-Jacques MOIROUX                               :+:      :+:    :+:    #
-#                                                    +:+ +:+         +:+      #
-#   By: vjacquie <vjacquie@student.42.fr>          +#+  +:+       +#+         #
-#   By: jmoiroux <jjmoiroux@gmail.com>           +#+#+#+#+#+   +#+            #
-#                                                     #+#    #+#              #
-#   Created: 2015/06/26 by vjacquie jmoiroux         ###   ########.fr        #
-#                                                                             #
-#*****************************************************************************#
 
 NAME = tamagotchi
 
-SOURCES = src/type.ml src/pet.ml src/game.ml src/main.ml
+SOURCES = type.ml Save.ml Pet.ml render.ml Game.ml main.ml
+
 
 CAMLC = ocamlc
 CAMLOPT = ocamlopt
 CAMLDEP = ocamldep
-FLAGS =
-LIBS = 
-WITHGRAPHICS = graphics.cma -cclib -LGraphics
 
-INSTALIB = opam switch 4.02.1 \
-eval `opam config env` \
-brew install gtk+ \
-brew install lablgtk2
+LIBS = $(WITHGRAPHICS)
+WITHGRAPHICS = unix.cma -cclib -lunix graphics.cma -cclib -lGraphics
 
-INSTALLLIBFULL = brew install ocaml --with-x11 \
-brew install opam \
-brew install gtk+ \
-opam init \
-eval `opam config env` \
-opam switch 4.0.2.0 \
-opem install lablgtk
 
 all: depend $(NAME).byt
 
@@ -42,42 +20,50 @@ $(NAME): opt byt
 opt: $(NAME).opt
 byt: $(NAME).byt
 
+
 OBJS = $(SOURCES:.ml=.cmo)
 OPTOBJS = $(SOURCES:.ml=.cmx)
 
+#######################################
+
+
 $(NAME).byt: $(OBJS)
-	$(CAMLC) $(FLAGS) -o $(NAME).byt $(LIBS) $(OBJS)
+	$(CAMLC) -o $(NAME).byt $(LIBS)  $(OBJS)
 
 $(NAME).opt: $(OPTOBJS)
-	$(CAMLOPT) $(FLAGS) -o $(NAME).opt $(LIBS:.cma=.cmxa) $(OPTOBJS)
+	$(CAMLOPT) -o $(NAME).opt $(LIBS:.cma=.cmxa) $(OPTOBJS)
+
+
+########################
+
 
 .SUFFIXES:
 .SUFFIXES: .ml .mli .cmo .cmi .cmx
 
 .ml.cmo:
-	$(CAMLC) $(FLAGS) -c $<
+	$(CAMLC) -c $<
 
 .mli.cmi:
-	$(CAMLC) $(FLAGS) -c $<
+	$(CAMLC) -c $<
 
 .ml.cmx:
-	$(CAMLOPT) $(FLAGS) -c $<
+	$(CAMLOPT) -c $<
+
+###############
 
 clean:
-	rm -f src/*.cm[iox] src/*~ src/.*~ src/*.o
-	rm -f $(NAME).o
+	rm -f *.cm[iox] *~ .*~
+	rm -f *.o
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) 
 	rm -f $(NAME).opt
 	rm -f $(NAME).byt
 
+
 depend: .depend
-	$(CAMLDEP) $(SOURCES) > .depend
+	@$(CAMLDEP) $(SOURCES) > .depend
 
 re: fclean all
-
-render_test:
-	ocamlfind ocamlc -g -package lablgtk2 -linkpkg src/render/main_test.ml -o test_render
 
 include .depend

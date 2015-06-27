@@ -1,3 +1,5 @@
+include Type
+
 class render =
 	object (self)
 		initializer Graphics.open_graph " 800x1000"
@@ -5,7 +7,6 @@ class render =
 		method draw_square x y size =
 			let s = size / 2 in
 			Graphics.moveto (x - s) (y - s);
-
 			Graphics.lineto (x + s) (y - s);
 			Graphics.lineto (x + s) (y + s);
 			Graphics.lineto (x - s) (y + s);
@@ -24,14 +25,12 @@ class render =
 			self#draw_square (x + 450) y 100;
 			Graphics.moveto (x + 440) y;
 			Graphics.draw_string "KILL";
-
 			self#draw_square (x + 150) (y - 150) 100;
 			Graphics.moveto (x + 120) (y - 150);
 			Graphics.draw_string "RESTART";
 			self#draw_square (x + 300) (y - 150) 100;
 			Graphics.moveto (x + 290) (y - 150);
 			Graphics.draw_string "QUIT"
-
 
 		method draw_stats x y pet =
 			Graphics.moveto x y;
@@ -83,7 +82,7 @@ class render =
 			Graphics.moveto x (y - 190);
 			Graphics.draw_string "    \\::|:        ''''''          '.";
 			Graphics.moveto x (y - 200);
-			Graphics.draw_string "  .,:::':  :                       '."; (* sg *)
+			Graphics.draw_string "  .,:::':  :                       '.";
 			Graphics.moveto x (y - 210);
 			Graphics.draw_string "   \\::\\:   :                         '._";
 			Graphics.moveto x (y - 220);

@@ -10,6 +10,8 @@
 (*                                                                           *)
 (*****************************************************************************)
 
+include Type
+
 class game =
 	object (self)
 		val _run = true
@@ -93,7 +95,6 @@ class game =
 		method run_game =
 			let pet = new Pet.pet in
 			let render = new Render.render in
-			print_endline "run_game";
 			self#init_game pet;
 			render#draw_screen pet;
 

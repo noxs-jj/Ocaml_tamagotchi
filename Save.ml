@@ -10,19 +10,20 @@
 (*                                                                           *)
 (*****************************************************************************)
 
+include Type
+
 class save =
 	object (self)
-		val _savename = "../save/save.itama"
+
+		val _savename = "save/save.itama"
 		val _line = 8
 
 		method check_file =
-			print_endline "check_file";
 			let lst = ref [] in
 			let fd = open_in _savename in
 			let rec loop lst i =
 				begin try
 					let line = input_line fd in
-					(* print_endline line; *)
 					lst := (List.append !lst [line]);
 					if i + 1 < _line then loop lst (i + 1)
 					else print_string ""
@@ -43,9 +44,8 @@ class save =
 
 		method load_game =
 			let ret = Type.get_record in
-			if Sys.file_exists _savename = false then begin print_endline "No saved game !"; ret end
+			if Sys.file_exists _savename = false then begin print_endline "No saved game !"; (ret:data) end
 			else begin
-				print_endline "load game Test";
 				let info = self#check_file in
 				if List.length info <> _line then begin print_endline "Corrupted save file !"; ret end
 				else begin
