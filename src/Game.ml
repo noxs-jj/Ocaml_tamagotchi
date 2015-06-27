@@ -25,27 +25,33 @@ class game =
 		method mouse pos pet render = match pos with
 		| (x, y) when (self#check_pos x 150) = true && (self#check_pos y 400) = true -> begin
 			pet#eat;
+			Graphics.sound 440 1000; (* LA - 1 sec*)
 			true
 		end
 		| (x, y) when (self#check_pos x 300) = true && (self#check_pos y 400) = true -> begin
 			pet#thunder;
+			Graphics.sound 440 1000; (* LA - 1 sec*)
 			true
 		end
 		| (x, y) when (self#check_pos x 450) = true && (self#check_pos y 400) = true -> begin
 			pet#bath;
+			Graphics.sound 440 1000; (* LA - 1 sec*)
 			true
 		end
 		| (x, y) when (self#check_pos x 600) = true && (self#check_pos y 400) = true -> begin
 			pet#kill;
+			Graphics.sound 440 1000; (* LA - 1 sec*)
 			true
 		end
 		| (x, y) when (self#check_pos x 300) = true && (self#check_pos y 250) = true -> begin
 			pet#restart;
+			Graphics.sound 440 1000; (* LA - 1 sec*)
 			true
 		end
 		| (x, y) when (self#check_pos x 450) = true && (self#check_pos y 250) = true -> begin
 			let save = new Save.save in
 			save#save pet;
+			Graphics.sound 440 1000; (* LA - 1 sec*)
 			false
 		end
 		| (_, _) -> true
