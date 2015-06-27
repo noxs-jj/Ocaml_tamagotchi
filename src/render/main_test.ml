@@ -1,30 +1,89 @@
-let locale = GtkMain.Main.init ()
+type data = {
+	mutable health : int;
+	mutable energy : int;
+	mutable hygiene : int ;
+	mutable happyness : int
+}
+
+
+let get_record = {health = 100; energy = 100; hygiene = 100; happyness = 100}
+
+class pet =
+	object (self)
+		val mutable _health = 100
+		val mutable _energy = 100
+		val mutable _hygiene = 100
+		val mutable _happyness = 100
+
+		method init_all (d:data) =
+			_health <- d.health;
+			_energy <- d.energy;
+			_hygiene <- d.hygiene;
+			_happyness <- d.happyness
+
+		method eat =
+			print_string "method pet.eat success health: ";
+			_health <- _health + 20;
+			_energy <- _energy - 10;
+			_hygiene <- _hygiene - 20;
+			_happyness <- _happyness + 5;
+			print_endline (string_of_int _health)
+
+		method thunder =
+			_health <- _health - 20;
+			_energy <- _energy + 25;
+			_happyness <- _happyness - 20
+
+		method bath =
+			_health <- _health - 20;
+			_energy <- _energy - 10;
+			_hygiene <- _hygiene + 25;
+			_happyness <- _happyness + 5
+
+		method kill =
+			_health <- _health - 20;
+			_energy <- _energy - 10;
+			_happyness <- _happyness + 20
+
+		method getHealth = _health
+		method getEnergy = _energy
+		method getHygiene = _hygiene
+		method getHappyness = _happyness
+
+		method is_alive =
+			if _health = 0 || _energy = 0 || _hygiene = 0 || _happyness = 0 then false
+			else true
+	end
+
+
 
 class render =
 	object (self)
+		val locale = GtkMain.Main.init ()
 		val win_x = 1280
 		val win_y = 720
 		val win_title = "Tamagotchi by jmoiroux & vjacquie"
-		
-		method loadButtons vbox =
+
+		val tama = new pet
+
+
+		method loadButtons vbox = (* ACTION *)
 			let button1 = GButton.button ~label:"EAT Function" ~packing:vbox#add () in
 			let button2 = GButton.button ~label:"THUNDER Function" ~packing:vbox#add () in
 			let button3 = GButton.button ~label:"BATH Function" ~packing:vbox#add () in
 			let button4 = GButton.button ~label:"KILL Function" ~packing:vbox#add () in
-			ignore(button1#connect#clicked ~callback: (fun () -> prerr_endline "EAT Function"));
+			ignore(button1#connect#clicked ~callback: (fun () -> tama#eat; prerr_endline "EAT Function"));
 			ignore(button2#connect#clicked ~callback: (fun () -> prerr_endline "THUNDER Function"));
 			ignore(button3#connect#clicked ~callback: (fun () -> prerr_endline "BATH Function"));
-			ignore(button4#connect#clicked ~callback: (fun () -> prerr_endline "KILL Function"));
+			ignore(button4#connect#clicked ~callback: (fun () -> prerr_endline "KILL Function"))
 
-		method loadButtonsTop vbox =
-			let button1 = GButton.button ~label:"Health Status" ~packing:vbox#add () in
-			let button2 = GButton.button ~label:"Energy Status" ~packing:vbox#add () in
-			let button3 = GButton.button ~label:"Hygiene Status" ~packing:vbox#add () in
-			let button4 = GButton.button ~label:"Happyness Status" ~packing:vbox#add () in
-			ignore(button1#connect#clicked ~callback: (fun () -> prerr_endline "health Status"));
-			ignore(button2#connect#clicked ~callback: (fun () -> prerr_endline "energy Status"));
-			ignore(button3#connect#clicked ~callback: (fun () -> prerr_endline "hygiene Status"));
-			ignore(button4#connect#clicked ~callback: (fun () -> prerr_endline "happyness Status"))
+
+		method loadButtonsTop vbox = (* STATUS *)
+			let button1 = GButton.button ~label:(string_of_int tama#getHealth) ~packing:vbox#add () in
+			let button2 = GButton.button ~label:(string_of_int tama#getEnergy) ~packing:vbox#add () in
+			let button3 = GButton.button ~label:(string_of_int tama#getHygiene) ~packing:vbox#add () in
+			let button4 = GButton.button ~label:(string_of_int tama#getHappyness) ~packing:vbox#add () in
+			print_string ""; ignore(button1); ignore(button2); ignore(button3); ignore(button4)
 
 
 		method init =
@@ -34,26 +93,33 @@ class render =
 										~position:`CENTER
 										~resizable:false () in
 
-
-			let mainContainer = GPack.vbox ~width:500 ~height:100 ~packing:window#add ~show:true () in
-			let footer = GPack.vbox ~width:500 ~height:100 ~packing:mainContainer#add ~show:true () in
-			let image = GMisc.drawing_area ~width:500 ~height:400 ~packing:mainContainer#add ~show:true () in
-			let head = GPack.vbox ~width:500 ~height:100 ~packing:mainContainer#add ~show:true () in
-			
+			let mainContainer = GPack.vbox ~packing:window#add ~show:true () in
+			let head = GPack.vbox ~packing:mainContainer#add ~show:true () in
+			let headStatus = GPack.hbox ~height:110 ~packing:mainContainer#add ~show:true () in (* STATUS *)
+			let image = GMisc.drawing_area ~height:480 ~packing:mainContainer#add ~show:true () in (* PET IMAGE *)
+			let footer = GPack.hbox ~height:110 ~packing:mainContainer#add ~show:true () in (* ACTION *)
 
 			ignore(window#connect#destroy ~callback:GMain.Main.quit);
-
-			let menubar1 = GMenu.menu_bar ~packing:footer#pack () in
+			ignore(image);
+			
+			(* START File menu *)
+			let menubar1 = GMenu.menu_bar ~packing:head#pack () in
 			let factory1 = new GMenu.factory menubar1 in
 			let accel_group = factory1#accel_group in
 			let file_menu = factory1#add_submenu "File" in
-			(* File menu *)
 			let factory = new GMenu.factory file_menu ~accel_group in
 			ignore(factory#add_item "Quit" ~key:GdkKeysyms._Q ~callback: GMain.Main.quit);
+			(* END File menu *)
 
 
-			self#loadButtonsTop footer;
-			self#loadButtons head;			
+			(* START image pix*)
+
+
+
+			(* END image pix*)
+
+			self#loadButtonsTop headStatus; (* STATUS *)
+			self#loadButtons footer; (* ACTION *)
 			(* Display the windows and enter Gtk+ main loop *)
 			window#add_accel_group accel_group;
 			window#show ();
@@ -66,3 +132,4 @@ let main () =
 	render#init
 
 let () = main ()
+;;
