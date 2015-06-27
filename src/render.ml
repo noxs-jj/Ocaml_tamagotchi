@@ -15,7 +15,7 @@ class render =
 			self#draw_square x y 100;
 			Graphics.moveto x y;
 			Graphics.draw_string "EAT";
-			self#draw_square (x + 140) y 100;
+			self#draw_square (x + 150) y 100;
 			Graphics.moveto (x + 120) y;
 			Graphics.draw_string "THUNDER";
 			self#draw_square (x + 300) y 100;
@@ -23,7 +23,15 @@ class render =
 			Graphics.draw_string "BATH";
 			self#draw_square (x + 450) y 100;
 			Graphics.moveto (x + 440) y;
-			Graphics.draw_string "KILL"
+			Graphics.draw_string "KILL";
+
+			self#draw_square (x + 150) (y - 150) 100;
+			Graphics.moveto (x + 120) (y - 150);
+			Graphics.draw_string "RESTART";
+			self#draw_square (x + 300) (y - 150) 100;
+			Graphics.moveto (x + 290) (y - 150);
+			Graphics.draw_string "QUIT"
+
 
 		method draw_stats x y pet =
 			Graphics.moveto x y;
@@ -103,9 +111,3 @@ class render =
 			self#draw_stats 10 900 pet;
 			self#draw_button 150 400
 	end
-
-
-(*
-	draw_screen ();
-	Graphics.read_key ()
-*)

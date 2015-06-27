@@ -17,18 +17,46 @@ class game =
 			let save = new Save.save in
 			pet#init_all (save#load_game)
 
+		method check_pos x value =
+			if x >= (value - 50) && x <= (value + 50) then true
+			else false
+
+		method mouse pos pet render = match pos with
+		| (x, y) when (self#check_pos x 150) = true && (self#check_pos y 400) = true -> begin
+			pet#eat;
+			true
+		end
+		| (x, y) when (self#check_pos x 300) = true && (self#check_pos y 400) = true -> begin
+			pet#thunder;
+			true
+		end
+		| (x, y) when (self#check_pos x 450) = true && (self#check_pos y 400) = true -> begin
+			pet#bath;
+			true
+		end
+		| (x, y) when (self#check_pos x 600) = true && (self#check_pos y 400) = true -> begin
+			pet#kill;
+			true
+		end
+		| (x, y) when (self#check_pos x 300) = true && (self#check_pos y 250) = true -> begin
+			pet#restart;
+			true
+		end
+		| (x, y) when (self#check_pos x 450) = true && (self#check_pos y 250) = true -> false
+		| (_, _) -> true
+
 		method render_loop pet render =
 			let rec loop run =
 				if (Graphics.button_down ()) = true then
 					begin
-						print_endline "mouse pressed";
 						let pos = Graphics.mouse_pos () in
-						print_endline (string_of_int (fst pos));
-						print_endline (string_of_int (snd pos))
+						if (self#mouse pos pet render) = true then begin
+							render#draw_screen pet;
+							loop run
+						end
+						else print_endline "Exiting..." 
 					end
-				else loop run				
-				(* if run = true then loop true *)
-				(* else print_endline "Exiting ..." *)
+				else loop run
 			in
 			loop true
 
@@ -40,5 +68,17 @@ class game =
 			render#draw_screen pet;
 
 			self#render_loop pet render
-			(* ignore (Graphics.read_key ()); *)
 	end
+
+
+(* 
+
+	eat			150 400
+	thunder		300 400
+	bath		450 400
+	kill		600 400
+
+	restart		300 250
+	quit		450 250
+
+ *)

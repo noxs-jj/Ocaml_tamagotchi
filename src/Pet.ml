@@ -45,6 +45,12 @@ class pet =
 			_energy <- _energy - 10;
 			_happyness <- _happyness + 20
 
+		method restart = 
+			_health <- 100;
+			_energy <- 100;
+			_hygiene <- 100;
+			_happyness <- 100
+			
 		method is_alive =
 			if _health = 0 || _energy = 0 || _hygiene = 0 || _happyness = 0 then false
 			else true
