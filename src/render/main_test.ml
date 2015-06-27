@@ -25,12 +25,10 @@ class pet =
 			_happyness <- d.happyness
 
 		method eat =
-			print_string "method pet.eat success health: ";
 			_health <- _health + 20;
 			_energy <- _energy - 10;
 			_hygiene <- _hygiene - 20;
-			_happyness <- _happyness + 5;
-			print_endline (string_of_int _health)
+			_happyness <- _happyness + 5
 
 		method thunder =
 			_health <- _health - 20;
@@ -98,29 +96,37 @@ class render =
 		val locale = GtkMain.Main.init ()
 		val win_x = 250
 		val win_y = 720
-		val win_title = "Tamagotchi by jmoiroux & vjacquie"
+		val win_title = "jmoiroux & vjacquie"
 
 		val tama = new pet
 
+		method refresh_data textHealth textEnergy textHygiene textHappyness = (* STATUS *)
+			textHealth#buffer#set_text (string_of_int tama#getHealth);
+			textEnergy#buffer#set_text (string_of_int tama#getEnergy);
+			textHygiene#buffer#set_text (string_of_int tama#getHygiene);
+			textHappyness#buffer#set_text (string_of_int tama#getHappyness)
 
-		method loadButtons vbox = (* ACTION *)
-			let button1 = GButton.button ~label:"EAT Function" ~packing:vbox#add () in
-			let button2 = GButton.button ~label:"THUNDER Function" ~packing:vbox#add () in
-			let button3 = GButton.button ~label:"BATH Function" ~packing:vbox#add () in
-			let button4 = GButton.button ~label:"KILL Function" ~packing:vbox#add () in
-			ignore(button1#connect#clicked ~callback: (fun () -> tama#eat; prerr_endline "EAT Function"));
-			ignore(button2#connect#clicked ~callback: (fun () -> prerr_endline "THUNDER Function"));
-			ignore(button3#connect#clicked ~callback: (fun () -> prerr_endline "BATH Function"));
-			ignore(button4#connect#clicked ~callback: (fun () -> prerr_endline "KILL Function"))
-
-
-		method loadButtonsTop vbox = (* STATUS *)
-			let button1 = GButton.button ~label:(string_of_int tama#getHealth) ~packing:vbox#add () in
-			let button2 = GButton.button ~label:(string_of_int tama#getEnergy) ~packing:vbox#add () in
-			let button3 = GButton.button ~label:(string_of_int tama#getHygiene) ~packing:vbox#add () in
-			let button4 = GButton.button ~label:(string_of_int tama#getHappyness) ~packing:vbox#add () in
-			print_string ""; ignore(button1); ignore(button2); ignore(button3); ignore(button4)
-
+		method loadButtons vbox textHealth textEnergy textHygiene textHappyness = (* ACTION *)
+			let button1 = GButton.button ~label:"EAT" ~packing:vbox#add () in
+			let button2 = GButton.button ~label:"THUNDER" ~packing:vbox#add () in
+			let button3 = GButton.button ~label:"BATH" ~packing:vbox#add () in
+			let button4 = GButton.button ~label:"KILL" ~packing:vbox#add () in
+			ignore(button1#connect#clicked ~callback: (fun () ->
+				tama#eat; 
+				self#refresh_data textHealth textEnergy textHygiene textHappyness
+			));
+			ignore(button2#connect#clicked ~callback: (fun () ->
+				tama#thunder;
+				self#refresh_data textHealth textEnergy textHygiene textHappyness
+			));
+			ignore(button3#connect#clicked ~callback: (fun () ->
+				tama#bath;
+				self#refresh_data textHealth textEnergy textHygiene textHappyness
+			));
+			ignore(button4#connect#clicked ~callback: (fun () ->
+				tama#kill;
+				self#refresh_data textHealth textEnergy textHygiene textHappyness
+			))
 
 		method init =
 			let window = GWindow.window	~width:win_x
@@ -128,9 +134,6 @@ class render =
 										~title:win_title
 										~position:`CENTER
 										~resizable:false () in
-
-
-
 			let mainContainer = GPack.vbox ~packing:window#add ~show:true () in
 			let head = GPack.vbox ~packing:mainContainer#add ~show:true () in
 			let headStatus = GPack.hbox ~height:110 ~packing:mainContainer#add ~show:true () in (* STATUS *)
@@ -149,19 +152,17 @@ class render =
 			ignore(factory#add_item "Quit" ~key:GdkKeysyms._Q ~callback: GMain.Main.quit);
 			(* END File menu *)
 
+			(* START Status bar *)
+			let textHealth = GText.view ~packing:headStatus#add ~show:true () in
+			let textEnergy = GText.view ~packing:headStatus#add ~show:true () in
+			let textHygiene = GText.view ~packing:headStatus#add ~show:true () in
+			let textHappyness = GText.view ~packing:headStatus#add ~show:true () in
+			self#refresh_data textHealth textEnergy textHygiene textHappyness;
+			(* END status bar *)
 
-			(* START image pix https://mindsized.org/spip.php?article243 *)
-
-
-
-			(* END image pix*)
-
-			self#loadButtonsTop headStatus; (* STATUS *)
-
-			self#loadButtons footer; (* ACTION *)
+			self#loadButtons footer textHealth textEnergy textHygiene textHappyness; (* ACTION *)
 			let buttonPika = GButton.button ~label:tama#pikachu ~packing:image#add () in
 			ignore(buttonPika);
-
 
 			(* Display the windows and enter Gtk+ main loop *)
 			window#add_accel_group accel_group;
