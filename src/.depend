@@ -1,7 +1,7 @@
 type.cmo :
 type.cmx :
-Save.cmo : type.cmo
-Save.cmx : type.cmx
+Save.cmo : type.cmo Pet.cmo
+Save.cmx : type.cmx Pet.cmx
 Pet.cmo : type.cmo
 Pet.cmx : type.cmx
 render.cmo : Pet.cmo

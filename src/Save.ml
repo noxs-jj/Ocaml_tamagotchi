@@ -47,7 +47,7 @@ class save =
 			else begin
 				print_endline "load game Test";
 				let info = self#check_file in
-				if List.length info <> _line then begin "Corrupted save file !"; ret end
+				if List.length info <> _line then begin print_endline "Corrupted save file !"; ret end
 				else begin
 					if self#check_string (List.nth info 1) = false
 						|| self#check_string (List.nth info 3) = false
@@ -63,4 +63,14 @@ class save =
 					end
 				end	
 			end
+
+		method save (pet:Pet.pet) =
+			let oc = open_out _savename in
+			let string_result =
+				"health:\n" ^ (string_of_int pet#get_health) ^ "\n" ^
+				"energy:\n" ^ (string_of_int pet#get_energy) ^ "\n" ^
+				"hygiene:\n" ^ (string_of_int pet#get_hygiene) ^ "\n" ^
+				"happyness:\n" ^ (string_of_int pet#get_happyness) ^ "\n" in
+			Printf.fprintf oc "%s" string_result;
+			close_out oc
 	end

@@ -13,6 +13,7 @@
 class game =
 	object (self)
 		val _run = true
+
 		method init_game (pet:Pet.pet) =
 			let save = new Save.save in
 			pet#init_all (save#load_game)
@@ -42,7 +43,11 @@ class game =
 			pet#restart;
 			true
 		end
-		| (x, y) when (self#check_pos x 450) = true && (self#check_pos y 250) = true -> false
+		| (x, y) when (self#check_pos x 450) = true && (self#check_pos y 250) = true -> begin
+			let save = new Save.save in
+			save#save pet;
+			false
+		end
 		| (_, _) -> true
 
 		method sleep pet render last_timer = 
@@ -57,7 +62,8 @@ class game =
 			let last_timer = ref (Unix.time ()) in
 			let rec loop pressed ite =
 				self#sleep pet render last_timer;
-				if (Graphics.button_down ()) = true then
+				if pet#is_alive = false then print_endline "You lose you snooze" 
+				else if (Graphics.button_down ()) = true then
 					begin
 						if pressed = false then begin
 							let pos = Graphics.mouse_pos () in
@@ -87,16 +93,3 @@ class game =
 
 			self#render_loop pet render
 	end
-
-
-(* 
-
-	eat			150 400
-	thunder		300 400
-	bath		450 400
-	kill		600 400
-
-	restart		300 250
-	quit		450 250
-
- *)

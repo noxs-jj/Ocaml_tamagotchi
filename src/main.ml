@@ -12,6 +12,12 @@
 
 let main () =
 	let game = new Game.game in
-	ignore (game#run_game)
+	begin try
+		ignore (game#run_game)
+	with
+		| Failure err -> print_endline err
+		| _ -> print_endline "Error"
+	end
+	
 
 let () = main ()

@@ -51,9 +51,10 @@ class pet =
 			_hygiene <- 100;
 			_happyness <- 100
 
-		method decrHealth = _health <- _health - 1 
+		method decrHealth = _health <- _health - 1
+
 		method is_alive =
-			if _health = 0 || _energy = 0 || _hygiene = 0 || _happyness = 0 then false
+			if _health <= 0 || _energy <= 0 || _hygiene <= 0 || _happyness <= 0 then false
 			else true
 
 		method get_health = _health
