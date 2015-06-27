@@ -22,22 +22,21 @@ class save =
 			let rec loop lst i =
 				begin try
 					let line = input_line fd in
-					print_endline line;
+					(* print_endline line; *)
 					lst := (List.append !lst [line]);
 					if i + 1 < _line then loop lst (i + 1)
-					else print_endline "end"
+					else print_string ""
 				with
 				| End_of_file -> close_in fd
 				end
-				
 			in
 			loop lst 0;
 			(!lst:string list)
 
 		method check_string str =
 			let rec loop str i len =
-				if i < (len - 1) && str.[i] >= '0' && str.[i] <= '9' then loop str (i + 1) len
-				else if i < len then false
+				if i < len && str.[i] >= '0' && str.[i] <= '9' then loop str (i + 1) len
+				else if i < len then begin print_endline "false"; print_endline str; false end
 				else true
 			in
 			loop str 0 (String.length str)
@@ -56,10 +55,10 @@ class save =
 						|| self#check_string (List.nth info 7) = false then
 						begin print_endline "Bad save file !"; ret end
 					else begin
-						ret.health = int_of_string (List.nth info 1);
-						ret.energy = int_of_string (List.nth info 3);
-						ret.hygiene = int_of_string (List.nth info 5);
-						ret.happyness = int_of_string (List.nth info 7);
+						ret.health <- int_of_string (List.nth info 1);
+						ret.energy <- int_of_string (List.nth info 3);
+						ret.hygiene <- int_of_string (List.nth info 5);
+						ret.happyness <- int_of_string (List.nth info 7);
 						ret
 					end
 				end	

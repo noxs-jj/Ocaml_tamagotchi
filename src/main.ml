@@ -10,16 +10,8 @@
 (*                                                                           *)
 (*****************************************************************************)
 
-let main argc argv =
+let main =
 	let game = new Game.game in
-	game#run_game argc argv
+	game#run_game
 
-let () =
-	print_endline "before main";
-	let argv = Array.to_list Sys.argv in
-	begin try
-		main (List.length argv) argv
-	with
-	| Failure err -> print_endline err
-	| _ -> failwith "Bad arg"
-	end
+let () = main ()

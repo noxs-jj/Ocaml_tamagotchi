@@ -13,13 +13,24 @@
 class game =
 	object (self)
 		val _run = true
-		method init_game (ac:int) (av:string list) (pet:Pet.pet) =
+		method init_game (pet:Pet.pet) =
 			let save = new Save.save in
-			if ac = 2 && (List.nth av 1) = "-l" then pet#init_all (save#load_game)
-			else print_endline "init_game"
+			pet#init_all (save#load_game)
 
-		method run_game (ac:int) (av:string list) =
+		method render_loop pet render =
+			let rec loop run =
+				if run = true then loop true
+				else print_endline "Exiting ..."
+			in
+			loop true
+
+		method run_game () =
 			let pet = new Pet.pet in
+			let render = new Render.render in
 			print_endline "run_game";
-			self#init_game ac av pet
+			self#init_game pet;
+			render#draw_screen pet;
+
+			self#render_loop pet render
+			(* ignore (Graphics.read_key ()); *)
 	end

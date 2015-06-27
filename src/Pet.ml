@@ -48,4 +48,9 @@ class pet =
 		method is_alive =
 			if _health = 0 || _energy = 0 || _hygiene = 0 || _happyness = 0 then false
 			else true
+
+		method get_health = _health
+		method get_energy = _energy
+		method get_hygiene = _hygiene
+		method get_happyness = _happyness
 	end
