@@ -91,10 +91,12 @@ class pet =
 			"               '-'-'  PIKACHU!\n"
 	end
 
+
+
 class render =
 	object (self)
 		val locale = GtkMain.Main.init ()
-		val win_x = 1280
+		val win_x = 250
 		val win_y = 720
 		val win_title = "Tamagotchi by jmoiroux & vjacquie"
 
