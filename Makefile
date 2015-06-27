@@ -21,10 +21,18 @@ FLAGS =
 LIBS = 
 WITHGRAPHICS = graphics.cma -cclib -LGraphics
 
-INSTALIB = 	opam switch 4.02.1 \
-			eval `opam config env` \
-			brew install gtk+ \
-			brew install lablgtk2
+INSTALIB = opam switch 4.02.1 \
+eval `opam config env` \
+brew install gtk+ \
+brew install lablgtk2
+
+INSTALLLIBFULL = brew install ocaml --with-x11 \
+brew install opam \
+brew install gtk+ \
+opam init \
+eval `opam config env` \
+opam switch 4.0.2.0 \
+opem install lablgtk
 
 all: depend $(NAME).byt
 

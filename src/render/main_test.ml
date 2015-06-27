@@ -100,6 +100,7 @@ class render =
 
 		val tama = new pet
 
+		(* http://stackoverflow.com/questions/16283984/ocaml-lablgtk2-multi-line-text-box *)
 		method refresh_data textHealth textEnergy textHygiene textHappyness = (* STATUS *)
 			textHealth#buffer#set_text (string_of_int tama#getHealth);
 			textEnergy#buffer#set_text (string_of_int tama#getEnergy);
