@@ -6,8 +6,8 @@ Save.cmo : type.cmo Pet.cmo
 Save.cmx : type.cmx Pet.cmx
 Pet.cmo : type.cmo
 Pet.cmx : type.cmx
-render.cmo : type.cmo Pet.cmo
-render.cmx : type.cmx Pet.cmx
+render.cmo : type.cmo Pickachu.cmo Pet.cmo
+render.cmx : type.cmx Pickachu.cmx Pet.cmx
 Game.cmo : type.cmo Save.cmo render.cmo Pet.cmo
 Game.cmx : type.cmx Save.cmx render.cmx Pet.cmx
 main.cmo : Game.cmo

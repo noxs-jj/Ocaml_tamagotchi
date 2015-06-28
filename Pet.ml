@@ -18,55 +18,67 @@ class pet =
 		val mutable _energy = 100
 		val mutable _hygiene = 100
 		val mutable _happyness = 100
+		val mutable _last_action = Type.Eat
 
 		method init_all (d:Type.data) =
 			_health <- d.health;
 			_energy <- d.energy;
 			_hygiene <- d.hygiene;
-			_happyness <- d.happyness
+			_happyness <- d.happyness;
+			_last_action <- Type.Eat
 
 		method eat =
 			_health <- _health + 20;
 			_energy <- _energy - 10;
 			_hygiene <- _hygiene - 20;
-			_happyness <- _happyness + 5
+			_happyness <- _happyness + 5;
+			_last_action <- Type.Eat
 
 		method thunder =
 			_health <- _health - 20;
 			_energy <- _energy + 25;
-			_happyness <- _happyness - 20
+			_happyness <- _happyness - 20;
+			_last_action <- Type.Thunder
+
 
 		method bath =
 			_health <- _health - 20;
 			_energy <- _energy - 10;
 			_hygiene <- _hygiene + 25;
-			_happyness <- _happyness + 5
+			_happyness <- _happyness + 5;
+			_last_action <- Type.Bath
 
 		method kill =
 			_health <- _health - 20;
 			_energy <- _energy - 10;
-			_happyness <- _happyness + 20
+			_happyness <- _happyness + 20;
+			_last_action <- Type.Kill
 
 		method restart = 
 			_health <- 100;
 			_energy <- 100;
 			_hygiene <- 100;
-			_happyness <- 100
+			_happyness <- 100;
+			_last_action <- Type.Restart
 
 		method sleep =
 			_energy <- _energy + 10;
 			_hygiene <- _hygiene - 5;
-			_happyness <- _happyness - 5
+			_happyness <- _happyness - 5;
+			_last_action <- Type.Sleep
+
 		method dance =
 			_happyness <- _happyness + 30;
 			_energy <- _energy - 10;
 			_hygiene <- _hygiene - 5;
+			_last_action <- Type.Dance
 
 		method cheat =
 			_health <- 999;
 			_energy <- 999;
 			_hygiene <- 999;
-			_happyness <- 999
+			_happyness <- 999;
+			_last_action <- Type.Cheat
 
 		method decrHealth = _health <- _health - 1
 
@@ -78,4 +90,5 @@ class pet =
 		method get_energy = _energy
 		method get_hygiene = _hygiene
 		method get_happyness = _happyness
+		method get_last_action = _last_action
 	end

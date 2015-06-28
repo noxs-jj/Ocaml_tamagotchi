@@ -113,8 +113,19 @@ class render =
 			Graphics.draw_string "               '-'-'  PIKACHU!"
 
 		method draw_screen (pet:Pet.pet) =
+			let pickachu = new Pickachu.action in
 			Graphics.clear_graph ();
-			self#draw_pika 300 900;
 			self#draw_stats 10 900 pet;
-			self#draw_button 150 400
+			self#draw_button 150 400;
+			match pet#get_last_action with
+				| Type.Eat		-> pickachu#eat 300 900
+				| Type.Thunder	-> pickachu#thunder 300 900
+				| Type.Bath		-> pickachu#bath 300 900
+				| Type.Kill		-> pickachu#default 300 900
+				| Type.Restart	-> pickachu#default 300 900
+				| Type.Sleep	-> pickachu#sleep 300 900
+				| Type.Dance	-> pickachu#dance 300 900
+				| Type.Cheat	-> pickachu#default 300 900;
+			
+			
 	end
