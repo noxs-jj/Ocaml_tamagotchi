@@ -1,5 +1,10 @@
-- son a chaque clic sur boutton
-- c'est fluide
-- boutton "Restart"
-- boutton "Quit"
-- Pikachu en ASCII-Art
+- Son emit a chaque clic sur boutton
+- C'est fluide
+- Boutton "Restart"
+- Boutton "Quit"
+- Bouton status "Sleep"
+- Boutton status "Danse"
+- Boutton feature "cheat" cacher dans l'ecran
+- Images en ASCII-Art
+- Un image Asci-art par etat
+- implementation de la couleurs
