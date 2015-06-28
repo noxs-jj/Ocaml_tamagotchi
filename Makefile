@@ -1,7 +1,7 @@
 
 NAME = tamagotchi
 
-SOURCES = type.ml Save.ml Pet.ml render.ml Game.ml main.ml
+SOURCES =  Pickachu.ml type.ml Save.ml Pet.ml render.ml Game.ml main.ml
 
 
 CAMLC = ocamlc

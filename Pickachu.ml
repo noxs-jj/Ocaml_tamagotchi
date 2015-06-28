@@ -10,8 +10,6 @@
 (*                                                                           *)
 (*****************************************************************************)
 
-include Type
-
 class action =
 	object (self)
 		method default x y =
@@ -126,7 +124,7 @@ class action =
 			Graphics.moveto x (y - 240);
 			Graphics.draw_string "___¶__¶___________¶____¶¶";
 			Graphics.moveto x (y - 250);
-			Graphics.draw_string "__¶¶¶¶_____________¶¶¶¶¶¶¶¶";
+			Graphics.draw_string "__¶¶¶¶_____________¶¶¶¶¶¶¶¶"
 
 		method dance x y =
 			Graphics.moveto x (y - 10);
@@ -196,7 +194,7 @@ class action =
 			Graphics.moveto x (y - 330);
 			Graphics.draw_string "                                         `.|-...,.<'    `,_\"\"'`./";
 			Graphics.moveto x (y - 340);
-			Graphics.draw_string "                                             `.'   `\"--'\" ";
+			Graphics.draw_string "                                             `.'   `\"--'\" "
 
 		method eat x y =
 			Graphics.moveto x (y - 10);
@@ -232,7 +230,7 @@ class action =
 			Graphics.moveto x (y - 160);
 			Graphics.draw_string "              jgs   \\    /  __   .-'";
 			Graphics.moveto x (y - 170);
-			Graphics.draw_string "                     \\,_/-\"`  `-'";
+			Graphics.draw_string "                     \\,_/-\"`  `-'"
 
 		method sleep x y =
 			Graphics.moveto x (y - 10);
@@ -268,5 +266,85 @@ class action =
 			Graphics.moveto x (y - 160);
 			Graphics.draw_string "                 '._ _.'";
 			Graphics.moveto x (y - 170);
-			Graphics.draw_string "                    `";
+			Graphics.draw_string "                    `"
+
+		method thunder x y =
+			Graphics.moveto x (y - 10);
+			Graphics.draw_string "                 .\"-,.__";
+			Graphics.moveto x (y - 20);
+			Graphics.draw_string "                 `.     `.  ,";
+			Graphics.moveto x (y - 30);
+			Graphics.draw_string "              .--'  .._,'\"-' `.";
+			Graphics.moveto x (y - 40);
+			Graphics.draw_string "             .    .'         `'";
+			Graphics.moveto x (y - 50);
+			Graphics.draw_string "             `.   /          ,'";
+			Graphics.moveto x (y - 60);
+			Graphics.draw_string "               `  '--.   ,-\"'";
+			Graphics.moveto x (y - 70);
+			Graphics.draw_string "                `\"`   |  \\";
+			Graphics.moveto x (y - 80);
+			Graphics.draw_string "                   -. \\, |";
+			Graphics.moveto x (y - 90);
+			Graphics.draw_string "                    `--Y.'      ___.";
+			Graphics.moveto x (y - 100);
+			Graphics.draw_string "                         \\     L._, \\";
+			Graphics.moveto x (y - 110);
+			Graphics.draw_string "               _.,        `.   <  <\\                _";
+			Graphics.moveto x (y - 120);
+			Graphics.draw_string "             ,' '           `, `.   | \\            ( `";
+			Graphics.moveto x (y - 130);
+			Graphics.draw_string "          ../, `.            `  |    .\\`.           \\ \\_";
+			Graphics.moveto x (y - 140);
+			Graphics.draw_string "         ,' ,..  .           _.,'    ||\\l            )  '\".";
+			Graphics.moveto x (y - 150);
+			Graphics.draw_string "        , ,'   \\           ,'.-.`-._,'  |           .  _._`.";
+			Graphics.moveto x (y - 160);
+			Graphics.draw_string "      ,' /      \\ \\        `' ' `--/   | \\          / /   ..\\";
+			Graphics.moveto x (y - 170);
+			Graphics.draw_string "    .'  /        \\ .         |\\__ - _ ,'` `        / /     `.`.";
+			Graphics.moveto x (y - 180);
+			Graphics.draw_string "    |  '          ..         `-...-\"  |  `-'      / /        . `.";
+			Graphics.moveto x (y - 190);
+			Graphics.draw_string "    | /           |L__           |    |          / /          `. `.";
+			Graphics.moveto x (y - 200);
+			Graphics.draw_string "   , /            .   .          |    |         / /             ` `";
+			Graphics.moveto x (y - 210);
+			Graphics.draw_string "  / /          ,. ,`._ `-_       |    |  _   ,-' /               ` \\";
+			Graphics.moveto x (y - 220);
+			Graphics.draw_string " / .           \\\"`_/. `-_ \\_,.  ,'    +-' `-'  _,        ..,-.    \\`.";
+			Graphics.moveto x (y - 230);
+			Graphics.draw_string "  '         .-f    ,'   `    '.       \\__.---'     _   .'   '     \\ \\";
+			Graphics.moveto x (y - 240);
+			Graphics.draw_string "' /          `.'    l     .' /          \\..      ,_|/   `.  ,'`     L`";
+			Graphics.moveto x (y - 250);
+			Graphics.draw_string "|'      _.-\"\"` `.    \\ _,'  `            \\ `.___`.'\"`-.  , |   |    | \\";
+			Graphics.moveto x (y - 260);
+			Graphics.draw_string "||    ,'      `. `.   '       _,...._        `  |    `/ '  |   '     .|";
+			Graphics.moveto x (y - 270);
+			Graphics.draw_string "||  ,'          `. ;.,.---' ,'       `.   `.. `-'  .-' /_ .'    ;_   ||";
+			Graphics.moveto x (y - 280);
+			Graphics.draw_string "|| '              V      / /           `   | `   ,'   ,' '.    !  `. ||";
+			Graphics.moveto x (y - 290);
+			Graphics.draw_string "||/            _,-------7 '              . |  `-'    l         /    `||";
+			Graphics.moveto x (y - 300);
+			Graphics.draw_string " |          ,' .-   ,' ||               | .-.        `.      .'     ||";
+			Graphics.moveto x (y - 310);
+			Graphics.draw_string " `'        ,'    `\".'    |               |    `.        '. -.'       `'";
+			Graphics.moveto x (y - 320);
+			Graphics.draw_string "          /      ,'      |               |,'    \\-.._,.'/'";
+			Graphics.moveto x (y - 330);
+			Graphics.draw_string "          .     /        .               .       \\    .''";
+			Graphics.moveto x (y - 340);
+			Graphics.draw_string "        .`.    |         `.             /         :_,'.'";
+			Graphics.moveto x (y - 350);
+			Graphics.draw_string "          \\ `...\\   _     ,'-.        .'         /_.-'";
+			Graphics.moveto x (y - 360);
+			Graphics.draw_string "           `-.__ `,  `'   .  _.>----''.  _  __  /";
+			Graphics.moveto x (y - 370);
+			Graphics.draw_string "                .'        /\"'          |  \"'   '_";
+			Graphics.moveto x (y - 380);
+			Graphics.draw_string "               /_|.-'\\ ,\".             '.'`__'-( \\";
+			Graphics.moveto x (y - 380);
+			Graphics.draw_string "                 / ,\"'\"\\,'               `/  `-.|\""
 	end
