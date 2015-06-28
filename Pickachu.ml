@@ -198,4 +198,40 @@ class action =
 			Graphics.moveto x (y - 340);
 			Graphics.draw_string "                                             `.'   `\"--'\" ";
 
+		method eat x y =
+			Graphics.moveto x (y - 10);
+			Graphics.draw_string "           ,     ,_";
+			Graphics.moveto x (y - 20);
+			Graphics.draw_string "           |`\\    `;;,            ,;;'";
+			Graphics.moveto x (y - 30);
+			Graphics.draw_string "           |  `\\    \\ '.        .'.'";
+			Graphics.moveto x (y - 40);
+			Graphics.draw_string "           |    `\\   \\  '-\"\"\"\"-' /";
+			Graphics.moveto x (y - 50);
+			Graphics.draw_string "           `.     `\\ /          |`";
+			Graphics.moveto x (y - 60);
+			Graphics.draw_string "             `>    /;   _     _ \\ ";
+			Graphics.moveto x (y - 70);
+			Graphics.draw_string "              /   / |       .    ;";
+			Graphics.moveto x (y - 80);
+			Graphics.draw_string "             <  (`\";\\ ()   ~~~  (/_";
+			Graphics.moveto x (y - 90);
+			Graphics.draw_string "              ';;\\  `,     __ _.-'` )";
+			Graphics.moveto x (y - 100);
+			Graphics.draw_string "                >;\\          `   _.'";
+			Graphics.moveto x (y - 110);
+			Graphics.draw_string "                `;;\\          \\-'";
+			Graphics.moveto x (y - 120);
+			Graphics.draw_string "                  ;/           \\ _";
+			Graphics.moveto x (y - 130);
+			Graphics.draw_string "                  |   ,\"\".     .` \\";
+			Graphics.moveto x (y - 140);
+			Graphics.draw_string "                  |      _|   '   /";
+			Graphics.moveto x (y - 150);
+			Graphics.draw_string "                   ;    /\")     .;-,";
+			Graphics.moveto x (y - 160);
+			Graphics.draw_string "              jgs   \\    /  __   .-'";
+			Graphics.moveto x (y - 170);
+			Graphics.draw_string "                     \\,_/-\"`  `-'";
+
 	end
