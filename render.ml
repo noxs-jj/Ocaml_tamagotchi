@@ -41,76 +41,19 @@ class render =
 
 
 		method draw_stats x y pet =
+			Graphics.set_color Graphics.red;
 			Graphics.moveto x y;
 			Graphics.draw_string ("Health: " ^ (string_of_int pet#get_health));
+			Graphics.set_color Graphics.blue;
 			Graphics.moveto x (y - 20);
 			Graphics.draw_string ("Energy: " ^ (string_of_int pet#get_energy));
+			Graphics.set_color Graphics.green;
 			Graphics.moveto x (y - 40);
 			Graphics.draw_string ("Hygiene: " ^ (string_of_int pet#get_hygiene));
+			Graphics.set_color Graphics.magenta;
 			Graphics.moveto x (y - 60);
-			Graphics.draw_string ("Happyness: " ^ (string_of_int pet#get_happyness))
-
-		method draw_pika x y =
-			Graphics.moveto x (y - 10);
-			Graphics.draw_string " '::::'._";
-			Graphics.moveto x (y - 20);
-			Graphics.draw_string "   '.    '.                        __.,,.";
-			Graphics.moveto x (y - 30);
-			Graphics.draw_string "     '.    '.                _..-'''':::\"";
-			Graphics.moveto x (y - 40);
-			Graphics.draw_string "       \\     \\,.--\"\"\"\"--.,-''      _:'";
-			Graphics.moveto x (y - 50);
-			Graphics.draw_string "   /\\   \\  .               .    .-'";
-			Graphics.moveto x (y - 60);
-			Graphics.draw_string "            '':---''_)      '-'-'";
-			Graphics.moveto x (y - 70);
-			Graphics.draw_string "  /  \\   \\                   ':'";
-			Graphics.moveto x (y - 80);
-			Graphics.draw_string " /    \\  :                     :";
-			Graphics.moveto x (y - 90);
-			Graphics.draw_string "/      \\:                       :";
-			Graphics.moveto x (y - 100);
-			Graphics.draw_string "\\       :                       :";
-			Graphics.moveto x (y - 110);
-			Graphics.draw_string " \\      :      ,--,         ,-,  :";
-			Graphics.moveto x (y - 120);
-			Graphics.draw_string "  \\    :      |(_):|       |():| :";
-			Graphics.moveto x (y - 130);
-			Graphics.draw_string "   \\   :     __'--'   __    '-'_  :";
-			Graphics.moveto x (y - 140);
-			Graphics.draw_string "    \\  :    /  \\      \\/      / \\ :";
-			Graphics.moveto x (y - 150);
-			Graphics.draw_string "     \\  :  (    )             \\_/ :";
-			Graphics.moveto x (y - 160);
-			Graphics.draw_string "  .-'' . :  \\__/   '--''--'      :";
-			Graphics.moveto x (y - 170);
-			Graphics.draw_string "  \\  . .-:'.                   .:";
-			Graphics.moveto x (y - 180);
-			Graphics.draw_string "   \' :| :  '-.__      ___...-' :";
-			Graphics.moveto x (y - 190);
-			Graphics.draw_string "    \\::|:        ''''''          '.";
-			Graphics.moveto x (y - 200);
-			Graphics.draw_string "  .,:::':  :                       '.";
-			Graphics.moveto x (y - 210);
-			Graphics.draw_string "   \\::\\:   :                         '._";
-			Graphics.moveto x (y - 220);
-			Graphics.draw_string "    \\::    :     /             '-._     '.";
-			Graphics.moveto x (y - 230);
-			Graphics.draw_string "     \\:    :    /              .   :-._ :-'";
-			Graphics.moveto x (y - 240);
-			Graphics.draw_string "      :    :   /               :   :  ''";
-			Graphics.moveto x (y - 250);
-			Graphics.draw_string "      :   .'   )'.             :   :";
-			Graphics.moveto x (y - 260);
-			Graphics.draw_string "       :  :  .'   '.          :   :";
-			Graphics.moveto x (y - 270);
-			Graphics.draw_string "        : '..'      :      _.' _.:";
-			Graphics.moveto x (y - 280);
-			Graphics.draw_string "         '._        :..---'\'''  _)";
-			Graphics.moveto x (y - 290);
-			Graphics.draw_string "            '':---''_)      '-'-'";
-			Graphics.moveto x (y - 300);
-			Graphics.draw_string "               '-'-'  PIKACHU!"
+			Graphics.draw_string ("Happyness: " ^ (string_of_int pet#get_happyness));
+			Graphics.set_color Graphics.black;
 
 		method draw_screen (pet:Pet.pet) =
 			let pickachu = new Pickachu.action in
@@ -125,7 +68,7 @@ class render =
 				| Type.Restart	-> pickachu#default 300 900
 				| Type.Sleep	-> pickachu#sleep 300 900
 				| Type.Dance	-> pickachu#dance 300 900
-				| Type.Cheat	-> pickachu#default 300 900;
+				| Type.Cheat	-> pickachu#cheat 300 900;
 			
 			
 	end

@@ -13,18 +13,19 @@
 class action =
 	object (self)
 		method default x y =
+			Graphics.set_color Graphics.blue;
 			Graphics.moveto x (y - 10);
-			Graphics.draw_string " '::::'._";
+			Graphics.draw_string " :::,";
 			Graphics.moveto x (y - 20);
-			Graphics.draw_string "   '.    '.                        __.,,.";
+			Graphics.draw_string " '::::'._";
 			Graphics.moveto x (y - 30);
-			Graphics.draw_string "     '.    '.                _..-'''':::\"";
+			Graphics.draw_string "   '.    '.                        __.,,.";
 			Graphics.moveto x (y - 40);
-			Graphics.draw_string "       \\     \\,.--\"\"\"\"--.,-''      _:'";
+			Graphics.draw_string "     '.    '.                _..-'''':::\"";
 			Graphics.moveto x (y - 50);
-			Graphics.draw_string "   /\\   \\  .               .    .-'";
+			Graphics.draw_string "       \\     \\,.--\"\"\"\"--.,-''      _:'";
 			Graphics.moveto x (y - 60);
-			Graphics.draw_string "            '':---''_)      '-'-'";
+			Graphics.draw_string "   /\\   \\  .               .    .-'";
 			Graphics.moveto x (y - 70);
 			Graphics.draw_string "  /  \\   \\                   ':'";
 			Graphics.moveto x (y - 80);
@@ -72,9 +73,11 @@ class action =
 			Graphics.moveto x (y - 290);
 			Graphics.draw_string "            '':---''_)      '-'-'";
 			Graphics.moveto x (y - 300);
-			Graphics.draw_string "               '-'-'  PIKACHU!"
+			Graphics.draw_string "               '-'-'  PIKACHU!";
+			Graphics.set_color Graphics.black
 
 		method bath x y = 
+			Graphics.set_color Graphics.blue;
 			Graphics.moveto x (y - 10);
 			Graphics.draw_string "_#___________###";
 			Graphics.moveto x (y - 20);
@@ -124,9 +127,11 @@ class action =
 			Graphics.moveto x (y - 240);
 			Graphics.draw_string "___#__#___________#____##";
 			Graphics.moveto x (y - 250);
-			Graphics.draw_string "__####_____________########"
+			Graphics.draw_string "__####_____________########";
+			Graphics.set_color Graphics.black
 
 		method dance x y =
+			Graphics.set_color Graphics.magenta;
 			Graphics.moveto x (y - 10);
 			Graphics.draw_string "                   ,-'\"-.";
 			Graphics.moveto x (y - 20);
@@ -194,9 +199,11 @@ class action =
 			Graphics.moveto x (y - 330);
 			Graphics.draw_string "                                         `.|-...,.<'    `,_\"\"'`./";
 			Graphics.moveto x (y - 340);
-			Graphics.draw_string "                                             `.'   `\"--'\" "
+			Graphics.draw_string "                                             `.'   `\"--'\" ";
+			Graphics.set_color Graphics.black
 
 		method eat x y =
+			Graphics.set_color Graphics.blue;
 			Graphics.moveto x (y - 10);
 			Graphics.draw_string "           ,     ,_";
 			Graphics.moveto x (y - 20);
@@ -230,9 +237,11 @@ class action =
 			Graphics.moveto x (y - 160);
 			Graphics.draw_string "                    \\    /  __   .-'";
 			Graphics.moveto x (y - 170);
-			Graphics.draw_string "                     \\,_/-\"`  `-'"
+			Graphics.draw_string "                     \\,_/-\"`  `-'";
+			Graphics.set_color Graphics.black;
 
 		method sleep x y =
+			Graphics.set_color Graphics.green;
 			Graphics.moveto x (y - 10);
 			Graphics.draw_string "                 _.---._";
 			Graphics.moveto x (y - 20);
@@ -266,9 +275,11 @@ class action =
 			Graphics.moveto x (y - 160);
 			Graphics.draw_string "                 '._ _.'";
 			Graphics.moveto x (y - 170);
-			Graphics.draw_string "                    `"
+			Graphics.draw_string "                    `";
+			Graphics.set_color Graphics.black
 
 		method thunder x y =
+			Graphics.set_color Graphics.red;
 			Graphics.moveto x (y - 10);
 			Graphics.draw_string "                 .\"-,.__";
 			Graphics.moveto x (y - 20);
@@ -286,7 +297,11 @@ class action =
 			Graphics.moveto x (y - 80);
 			Graphics.draw_string "                   -. \\, |";
 			Graphics.moveto x (y - 90);
-			Graphics.draw_string "                    `--Y.'      ___.";
+			Graphics.draw_string "                    `--Y.'";
+
+			Graphics.set_color (Graphics.rgb 255 165 0);
+			Graphics.moveto (x + 155) (y - 90);
+			Graphics.draw_string "      ___.";
 			Graphics.moveto x (y - 100);
 			Graphics.draw_string "                         \\     L._, \\";
 			Graphics.moveto x (y - 110);
@@ -346,5 +361,35 @@ class action =
 			Graphics.moveto x (y - 380);
 			Graphics.draw_string "               /_|.-'\\ ,\".             '.'`__'-( \\";
 			Graphics.moveto x (y - 380);
-			Graphics.draw_string "                 / ,\"'\"\\,'               `/  `-.|\""
+			Graphics.draw_string "                 / ,\"'\"\\,'               `/  `-.|\"";
+			Graphics.set_color Graphics.black
+
+		method cheat x y =
+			Graphics.set_color Graphics.red;
+			Graphics.moveto x (y - 10);
+			Graphics.draw_string "     .-. \\_/ .-.";
+			Graphics.moveto x (y - 20);
+			Graphics.draw_string "     \\.-\\/=\\/.-/";
+			Graphics.moveto x (y - 30);
+			Graphics.draw_string "  '-./___|=|___\\.-'";
+			Graphics.moveto x (y - 40);
+			Graphics.draw_string " .--| \\|/`\"`\\|/ |--.";
+			Graphics.moveto x (y - 50);
+			Graphics.draw_string "(((_)\\  .---.  /(_)))";
+			Graphics.moveto x (y - 60);
+			Graphics.draw_string " `\\ \\_`-.   .-'_/ /`_";
+			Graphics.moveto x (y - 70);
+			Graphics.draw_string "   '.__       __.'(_))";
+			Graphics.moveto x (y - 80);
+			Graphics.draw_string "       /     \\     //";
+			Graphics.moveto x (y - 90);
+			Graphics.draw_string "      |       |__.'/";
+			Graphics.moveto x (y - 100);
+			Graphics.draw_string "      \\       /--'`";
+			Graphics.moveto x (y - 110);
+			Graphics.draw_string "  .--,-' .--. '----.";
+			Graphics.moveto x (y - 120);
+			Graphics.draw_string " '----`--'  '--`----'";
+			Graphics.set_color Graphics.black
+
 	end

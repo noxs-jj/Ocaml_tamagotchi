@@ -66,7 +66,7 @@ class game =
 			Graphics.sound 440 1000; (* LA - 1 sec*)
 			true
 		end
-		| (x, y) when (self#check_pos x 450) = true && (self#check_pos y 600) = true -> begin
+		| (x, y) when (self#check_pos x 50) = true && (self#check_pos y 50) = true -> begin
 			pet#cheat;
 			print_endline "Cheater !";
 			Graphics.sound 440 1000; (* LA - 1 sec*)
