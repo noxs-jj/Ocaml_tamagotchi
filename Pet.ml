@@ -53,6 +53,15 @@ class pet =
 			_hygiene <- 100;
 			_happyness <- 100
 
+		method sleep =
+			_energy <- _energy + 10;
+			_hygiene <- _hygiene - 5;
+			_happyness <- _happyness - 5
+		method dance =
+			_happyness <- _happyness + 30;
+			_energy <- _energy - 10;
+			_hygiene <- _hygiene - 5;
+
 		method decrHealth = _health <- _health - 1
 
 		method is_alive =

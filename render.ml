@@ -30,7 +30,15 @@ class render =
 			Graphics.draw_string "RESTART";
 			self#draw_square (x + 300) (y - 150) 100;
 			Graphics.moveto (x + 290) (y - 150);
-			Graphics.draw_string "QUIT"
+			Graphics.draw_string "QUIT";
+			(* bonus *)
+			self#draw_square x (y - 150) 100;
+			Graphics.moveto (x - 10) (y - 150);
+			Graphics.draw_string "SLEEP";
+			self#draw_square (x + 450) (y - 150) 100;
+			Graphics.moveto (x + 430) (y - 150);
+			Graphics.draw_string "DANCE"
+
 
 		method draw_stats x y pet =
 			Graphics.moveto x y;
