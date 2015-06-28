@@ -114,5 +114,6 @@ class game =
 			self#init_game pet;
 			render#draw_screen pet;
 
-			self#render_loop pet render
+			self#render_loop pet render;
+			Graphics.close_graph ()
 	end

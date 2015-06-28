@@ -44,7 +44,7 @@ class save =
 
 		method load_game =
 			let ret = Type.get_record in
-			if Sys.file_exists _savename = false then begin print_endline "No saved game !"; (ret:data) end
+			if Sys.file_exists _savename = false then begin print_endline "On Loading: No saved game !"; (ret:data) end
 			else begin
 				let info = self#check_file in
 				if List.length info <> _line then begin print_endline "Corrupted save file !"; ret end

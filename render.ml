@@ -2,7 +2,7 @@ include Type
 
 class render =
 	object (self)
-		initializer Graphics.open_graph " 800x1000"
+		initializer Graphics.open_graph " 800x1000+900-250"
 
 		method draw_square x y size =
 			let s = size / 2 in
@@ -39,7 +39,6 @@ class render =
 			Graphics.moveto (x + 430) (y - 150);
 			Graphics.draw_string "DANCE"
 
-
 		method draw_stats x y pet =
 			Graphics.set_color Graphics.red;
 			Graphics.moveto x y;
@@ -68,7 +67,5 @@ class render =
 				| Type.Restart	-> pickachu#default 300 900
 				| Type.Sleep	-> pickachu#sleep 300 900
 				| Type.Dance	-> pickachu#dance 300 900
-				| Type.Cheat	-> pickachu#cheat 300 900;
-			
-			
+				| Type.Cheat	-> pickachu#cheat 300 900;		
 	end
