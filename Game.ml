@@ -56,6 +56,22 @@ class game =
 			Graphics.sound 440 1000; (* LA - 1 sec*)
 			false
 		end
+		| (x, y) when (self#check_pos x 150) = true && (self#check_pos y 250) = true -> begin
+			pet#sleep;
+			Graphics.sound 440 1000; (* LA - 1 sec*)
+			true
+		end
+		| (x, y) when (self#check_pos x 600) = true && (self#check_pos y 250) = true -> begin
+			pet#dance;
+			Graphics.sound 440 1000; (* LA - 1 sec*)
+			true
+		end
+		| (x, y) when (self#check_pos x 450) = true && (self#check_pos y 600) = true -> begin
+			pet#cheat;
+			print_endline "Cheater !";
+			Graphics.sound 440 1000; (* LA - 1 sec*)
+			true
+		end
 		| (_, _) -> true
 
 		method sleep pet render last_timer = 

@@ -62,6 +62,12 @@ class pet =
 			_energy <- _energy - 10;
 			_hygiene <- _hygiene - 5;
 
+		method cheat =
+			_health <- 999;
+			_energy <- 999;
+			_hygiene <- 999;
+			_happyness <- 999
+
 		method decrHealth = _health <- _health - 1
 
 		method is_alive =
